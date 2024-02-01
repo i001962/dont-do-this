@@ -6,8 +6,8 @@ import { time } from "console";
 import { NextRequest, NextResponse } from "next/server";
 
 // Host
-const HOST_URL = process.env["HOST"];
-// const HOST_URL = "https://5d3a-119-18-20-120.ngrok-free.app"
+//const HOST_URL = process.env["HOST"];
+const HOST_URL = "https://dont-do-this-two.vercel.app"
 
 // Frame Contents
 const title = "Bannyverse";
