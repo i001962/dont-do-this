@@ -66,7 +66,6 @@ export async function POST(req: NextRequest, res: NextResponse)
     if (indexString == "0" && btnIndex == 1 || btnIndex == 1 && indexString == null || reset == "true") {
         return TitleFrame()
     }
-    const buttonNames = ["⏮️", "⏭️"]
     // let chain = searchParams.get("chain")
 
     // Grab casts
@@ -100,6 +99,7 @@ export async function POST(req: NextRequest, res: NextResponse)
 
     const total = filteredCasts.length;
 
+
     // Select reply to show
     // FIX: select using buttonIndex and res.query
     console.log(`btnIndex: ${btnIndex}`);
@@ -114,6 +114,7 @@ export async function POST(req: NextRequest, res: NextResponse)
         console.log("IF2");
         index = +indexString - 1;
     }
+    const buttonNames = index != total - 1 ? ["⏮️", "⏭️"] : ["⏮️"]
 
     // chain = "early";
     console.log(`index: ${index!}`);
