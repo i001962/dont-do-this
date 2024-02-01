@@ -7,7 +7,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 // Host
 //const HOST_URL = process.env["HOST"];
-const HOST_URL = "https://dont-do-this-two.vercel.app"
+const HOST_URL = "https://bannyverse.vercel.app"
 
 // Frame Contents
 const title = "Bannyverse";
@@ -20,7 +20,7 @@ const FID = 4163;
 function TitleFrame()
 {
     const buttonNames = ["↩️", "▶️"];
-    const postUrl = HOST_URL + `/api/dont`;
+    const postUrl = HOST_URL + `/api/banny`;
     const frameImageUrl = HOST_URL + `/banny1.png`;
     return frame200Response(
         title,
@@ -34,7 +34,7 @@ function TitleFrame()
 function NoCastsFrame()
 {
     const buttonNames = ["↩️"];
-    const postUrl = HOST_URL + `/api/dont?reset=true`;
+    const postUrl = HOST_URL + `/api/banny?reset=true`;
     const frameImageUrl = HOST_URL + `/banny2.png`;
     return frame200Response(
         title,
@@ -136,10 +136,10 @@ export async function POST(req: NextRequest, res: NextResponse)
 
     const frameImageUrl =
         HOST_URL +
-        `/api/image/dont?timestamp=${timestamp}&img=${img}&username=${username}&pfp=${pfp}&index=${index}&total=${total}&date=${Date.now()}`;
+        `/api/image/banny?timestamp=${timestamp}&img=${img}&username=${username}&pfp=${pfp}&index=${index}&total=${total}&date=${Date.now()}`;
     const postUrl =
         HOST_URL +
-        `/api/dont?index=${index}`;
+        `/api/banny?index=${index}`;
     return frame200Response(title, frameVersion, frameImageUrl, postUrl, buttonNames)
 }
 
