@@ -63,7 +63,7 @@ export async function POST(req: NextRequest, res: NextResponse)
     // JSON data
     const data: FrameSignaturePacket = await req.json()
     const btnIndex = data.untrustedData.buttonIndex;
-    if (indexString == "0" && btnIndex == 1 || reset == "true") {
+    if (indexString == "0" && btnIndex == 1 || btnIndex == 1 && indexString == null || reset == "true") {
         return TitleFrame()
     }
     const buttonNames = ["⏮️", "⏭️"]
