@@ -85,7 +85,7 @@ export async function POST(req: NextRequest, res: NextResponse)
                 return false
             }
             const txt = c.data.castAddBody.text.toLowerCase()
-            return txt.includes("dont do this") || txt.includes("don't do this")
+            return txt.includes("banny") || txt.includes("bannyverse")
         }
     );
     // DEBUG
