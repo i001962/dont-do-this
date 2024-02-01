@@ -10,18 +10,18 @@ const HOST_URL = process.env["HOST"];
 // const HOST_URL = "https://5d3a-119-18-20-120.ngrok-free.app"
 
 // Frame Contents
-const title = "dont";
+const title = "Bannyverse";
 const frameVersion = "vNext";
 
 // Farcaster API
 const HUBBLE_URL = "https://nemes.farcaster.xyz:2281/v1";
-const FID = 3
+const FID = 4163;
 
 function TitleFrame()
 {
     const buttonNames = ["↩️", "▶️"];
     const postUrl = HOST_URL + `/api/dont`;
-    const frameImageUrl = HOST_URL + `/title.png`;
+    const frameImageUrl = HOST_URL + `/banny1.png`;
     return frame200Response(
         title,
         frameVersion,
@@ -35,7 +35,7 @@ function NoCastsFrame()
 {
     const buttonNames = ["↩️"];
     const postUrl = HOST_URL + `/api/dont?reset=true`;
-    const frameImageUrl = HOST_URL + `/no-donts.png`;
+    const frameImageUrl = HOST_URL + `/banny2.png`;
     return frame200Response(
         title,
         frameVersion,
