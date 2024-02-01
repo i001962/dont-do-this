@@ -8,8 +8,9 @@ export function frame200Response(title: string, frameVersion: string, frameImage
           <meta property="og:description" content="${title}" />
           <meta property="og:image" content="${frameImageUrl}" />
           <meta name="fc:frame" content="${frameVersion}" />
-          <meta name="fc:frame:image" content="${"banny.eth.limo"}" />
+          <meta name="fc:frame:image" content="${frameImageUrl}" />
           <meta name="fc:frame:post_url" content="${postUrl}" />
+          <meta name="fc:frame:input:text" content="${"testing"}" />
           ${buttonNames.map(
             (bn, i) => `<meta name="fc:frame:button:${i+1}" content="${bn}" />`
           )}
@@ -18,7 +19,7 @@ export function frame200Response(title: string, frameVersion: string, frameImage
           <h1>Bannyverse</h1>
           <p>Farcaster Frame for the Banny</p>
           <dl>
-            <p>Learn more (<a href="https://banny.eth.limo">about $BANNY</a>)
+            <dt>In action</dt>
           <hr>
           <p>Built dont-do-this modified by KMac (<a href="https://warpcast.com/4163">Warpcast Profile</a>)
         </body>
