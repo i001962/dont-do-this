@@ -10,7 +10,6 @@ export function frame200Response(title: string, frameVersion: string, frameImage
           <meta name="fc:frame" content="${frameVersion}" />
           <meta name="fc:frame:image" content="${frameImageUrl}" />
           <meta name="fc:frame:post_url" content="${postUrl}" />
-          <meta name="fc:frame:input:text" content="${"testing"}" />
           ${buttonNames.map(
             (bn, i) => `<meta name="fc:frame:button:${i+1}" content="${bn}" />`
           )}
