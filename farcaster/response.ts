@@ -18,8 +18,15 @@ export function frame200Response(title: string, frameVersion: string, frameImage
           <h1>Bannyverse</h1>
           <p>Farcaster Frame for the Banny</p>
           <dl>
-            <dt>In action</dt>
-          <hr>
+            <dt>Frame Version</dt>
+            <dd>${frameVersion}</dd>
+            <dt>Frame Image URL</dt>
+            <dd>${frameImageUrl}</dd>
+            <dt>Post URL</dt>
+            <dd>${postUrl}</dd>
+            <dt>Button Names</dt>
+            <dd>${buttonNames.join(", ")}</dd>
+          </dl>
           <p>Built dont-do-this modified by KMac (<a href="https://warpcast.com/4163">Warpcast Profile</a>)
         </body>
       </html>
