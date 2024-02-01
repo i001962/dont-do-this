@@ -19,7 +19,7 @@ export function frame200Response(title: string, frameVersion: string, frameImage
           <p>Farcaster Frame for the latest dont do this(s)</p>
           <dl>
             <dt>In action</dt>
-            <dd><a href="https://warpcast.com/3070/0x07bf940d">https://warpcast.com/3070/0x07bf940d</a></dd>
+            <dd><a href="https://warpcast.com/3070/0xbbd3cde2">https://warpcast.com/3070/0xbbd3cde2</a></dd>
             <dt>Code</dt>
             <dd><a href="https://github.com/eucalyptus-viminalis/dont-do-this">GitHub</a></dd>
           </dl>
