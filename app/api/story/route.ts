@@ -20,7 +20,7 @@ const FID = 4163;
 function TitleFrame()
 {
     const buttonNames = ["↩️", "▶️"];
-    const postUrl = HOST_URL + `/api/banny`;
+    const postUrl = HOST_URL + `/api/story`;
     const frameImageUrl = HOST_URL + `/banny1.png`;
     return frame200Response(
         title,
@@ -34,7 +34,7 @@ function TitleFrame()
 function NoCastsFrame()
 {
     const buttonNames = ["↩️"];
-    const postUrl = HOST_URL + `/api/banny?reset=true`;
+    const postUrl = HOST_URL + `/api/story?reset=true`;
     const frameImageUrl = HOST_URL + `/banny2.png`;
     return frame200Response(
         title,
@@ -136,10 +136,10 @@ export async function POST(req: NextRequest, res: NextResponse)
 
     const frameImageUrl =
         HOST_URL +
-        `/api/image/banny?timestamp=${timestamp}&img=${img}&username=${username}&pfp=${pfp}&index=${index}&total=${total}&date=${Date.now()}`;
+        `/api/image/story?timestamp=${timestamp}&img=${img}&username=${username}&pfp=${pfp}&index=${index}&total=${total}&date=${Date.now()}`;
     const postUrl =
         HOST_URL +
-        `/api/banny?index=${index}`;
+        `/api/story?index=${index}`;
     return frame200Response(title, frameVersion, frameImageUrl, postUrl, buttonNames)
 }
 
