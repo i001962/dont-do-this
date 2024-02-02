@@ -130,7 +130,7 @@ export async function POST(req: NextRequest, res: NextResponse)
 
     const frameImageUrl =
         HOST_URL +
-        `/api/image/story?img=${img}`;
+        `/api/image/story?img=${img}&index=${index}&total=${total}&date=${Date.now()}`;
     const postUrl =
         HOST_URL +
         `/api/story?index=${index}`;

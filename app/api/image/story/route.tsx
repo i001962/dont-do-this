@@ -68,9 +68,6 @@ export function GET(req: NextRequest) {
                         // justifyContent: "space-between",
                     }}
                 >
-                    <img alt="avatar" width="128" src={`${pfp}`} style={{}} />
-                    <p tw="border-2 border-black p-2">@{username}</p>
-                    <span>{hoursAgo.toFixed(0)}h ago</span>
                 </div>
                 <img
                     alt="img"
