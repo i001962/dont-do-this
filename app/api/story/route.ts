@@ -47,7 +47,7 @@ function NoCastsFrame()
 
 // Handle GET
 export function GET()
-{
+{   
     return TitleFrame()
 }
 
@@ -66,39 +66,44 @@ export async function POST(req: NextRequest, res: NextResponse)
     if (indexString == "0" && btnIndex == 1 || btnIndex == 1 && indexString == null || reset == "true") {
         return TitleFrame()
     }
-    // let chain = searchParams.get("chain")
 
-    // Grab casts
-    const response = await fetch(
-        `${HUBBLE_URL}/castsByFid?fid=${FID}&pageSize=500&reverse=1`
-    );
-    const { messages } = await response.json();
-    const casts: Cast[] = messages;
-    // DEBUG
-    console.log(`casts.length: ${casts.length}`);
+    // Grabs croptop posts
+    const res1 = await fetch('https://banny.eth.limo/rss.xml');
+    const data1 = await res1.text();
+      console.log(data1);
+      const srcAttributes: string[] = [];
+      const cdataSections = data1.split('<![CDATA[').slice(1);
 
-    // Filter replies for don't do this
-    const filteredCasts = casts.filter(c=>c.data != undefined && c.data.castAddBody != undefined).filter(
-        (c) => {
-            if (c.data.castAddBody.text == "")
-            {
-                return false
+      // Iterate through the CDATA sections
+      for (const cdataSection of cdataSections) {
+        // Find the end of the CDATA section
+        const cdataEnd = cdataSection.indexOf(']]>');
+      
+        if (cdataEnd !== -1) {
+          // Extract the CDATA content
+          const cdataContent = cdataSection.slice(0, cdataEnd);
+      
+          // Check if the CDATA content contains a src attribute
+          if (cdataContent.includes('src="')) {
+            // Find the src attribute within the CDATA content
+            const srcMatch = /src="([^"]+)"/.exec(cdataContent);
+      
+            if (srcMatch) {
+              const src = srcMatch[1];
+              srcAttributes.push(src); // Add the src attribute to the array
+              console.log(src); // Output: https://bananapus.eth.limo/52F6E079-80FF-483D-AD3E-480CC5AB1512/Screenshot 2024-01-04 at 23.30.01.png
             }
-            const txt = c.data.castAddBody.text.toLowerCase()
-            return txt.includes("banny") || txt.includes("bannyverse")
+          } else {
+            console.log('CDATA content does not contain a src attribute. Skipping...');
+          }
         }
-    );
-    // DEBUG
-    console.log(`filteredCasts.length: ${filteredCasts.length}`);
-
-    // If no casts found
-    if (filteredCasts.length == 0)
+    }
+    if (srcAttributes.length == 0)
     {
         return NoCastsFrame()
     }
 
-    const total = filteredCasts.length;
-
+    const total = srcAttributes.length;
 
     // Select reply to show
     // FIX: select using buttonIndex and res.query
@@ -118,25 +123,14 @@ export async function POST(req: NextRequest, res: NextResponse)
 
     // chain = "early";
     console.log(`index: ${index!}`);
-    const cast = filteredCasts[index];
-    console.log(`cast: ${cast}`)
-    const timestamp = cast.data.timestamp
-    console.log(`timestamp: ${timestamp}`)
-    const img = cast.data.castAddBody.embeds[0].url;
-    const usernameRes = await fetch(
-        `${HUBBLE_URL}/userDataByFid?fid=${FID}&user_data_type=${USER_DATA_TYPE.USERNAME}`
-    );
-    const usernameData: UserData = await usernameRes.json();
-    const username = usernameData.data.userDataBody.value;
-    const pfpRes = await fetch(
-        `${HUBBLE_URL}/userDataByFid?fid=${FID}&user_data_type=${USER_DATA_TYPE.PFP}`
-    );
-    const pfpData: UserData = await pfpRes.json();
-    const pfp = pfpData.data.userDataBody.value;
+    const cast = srcAttributes[index];
+    console.log(`srcAttributes: ${cast}`)
+    const img = cast;
+    
 
     const frameImageUrl =
         HOST_URL +
-        `/api/image/story?timestamp=${timestamp}&img=${img}&username=${username}&pfp=${pfp}&index=${index}&total=${total}&date=${Date.now()}`;
+        `/api/image/story?img=${img}&index=${index}&total=${total}&date=${Date.now()}`;
     const postUrl =
         HOST_URL +
         `/api/story?index=${index}`;
