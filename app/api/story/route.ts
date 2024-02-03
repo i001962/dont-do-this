@@ -7,17 +7,12 @@ import { NextRequest, NextResponse } from "next/server";
 /* GUNDB */
 import Gun from 'gun';
 // import sea from 'gun/sea';
-import 'gun/lib/radix';
-import 'gun/lib/radisk';
-import 'gun/lib/store';
-import 'gun/lib/rindexed';
+
 
 const GunPeers = ['https://gun-manhattan.herokuapp.com/gun']; // TODO: add more peers in const.ts
 const peers = GunPeers; 
 const gun = Gun({
   peers: peers,
-  localStorage: false, 
-  radisk: false, // Use Radisk to persist data
 }); 
 const locations = gun.get('test-locations-1').get("user");
 
