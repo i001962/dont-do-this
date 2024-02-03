@@ -16,7 +16,7 @@ const GunPeers = ['https://gun-manhattan.herokuapp.com/gun']; // TODO: add more 
 const peers = GunPeers; 
 const gun = Gun({
   peers: peers,
-  localStorage: true, 
+  localStorage: false, 
   radisk: false, // Use Radisk to persist data
 }); 
 const locations = gun.get('test-locations-1').get("user");
