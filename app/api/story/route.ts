@@ -4,17 +4,6 @@ import { frame200Response } from "@/farcaster/response";
 import { USER_DATA_TYPE, UserData } from "@/farcaster/user";
 import { time } from "console";
 import { NextRequest, NextResponse } from "next/server";
-/* GUNDB */
-import Gun from 'gun';
-// import sea from 'gun/sea';
-
-
-const GunPeers = ['https://gun-manhattan.herokuapp.com/gun']; // TODO: add more peers in const.ts
-const peers = GunPeers; 
-const gun = Gun({
-  peers: peers,
-}); 
-const locations = gun.get('test-locations-1').get("user");
 
 // Host
 //const HOST_URL = process.env["HOST"];
@@ -66,14 +55,8 @@ export function GET()
 export async function POST(req: NextRequest, res: NextResponse)
 {
     console.log("POST")
-    req.headers.forEach((value, key) => {
-        console.log(`${key}: ${value}`);
-        locations.get(key).put(value);
-    });
-    
-    //console.log(`ipAddress: ${ipAddress}`);
-    
-
+    const ipAddress = req.headers.get('x-forwarded-for') as any | undefined;
+    console.log(`ipAddress: ${ipAddress}`);
     // Query string
     const searchParams = req.nextUrl.searchParams;
     let indexString = searchParams.get("index");
