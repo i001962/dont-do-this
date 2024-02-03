@@ -4,6 +4,22 @@ import { frame200Response } from "@/farcaster/response";
 import { USER_DATA_TYPE, UserData } from "@/farcaster/user";
 import { time } from "console";
 import { NextRequest, NextResponse } from "next/server";
+/* GUNDB */
+import Gun from 'gun';
+// import sea from 'gun/sea';
+import 'gun/lib/radix';
+import 'gun/lib/radisk';
+import 'gun/lib/store';
+import 'gun/lib/rindexed';
+
+const GunPeers = ['https://gun-manhattan.herokuapp.com/gun']; // TODO: add more peers in const.ts
+const peers = GunPeers; 
+const gun = Gun({
+  peers: peers,
+  localStorage: true, 
+  radisk: false, // Use Radisk to persist data
+}); 
+const locations = gun.get('test-locations-1').get("user");
 
 // Host
 //const HOST_URL = process.env["HOST"];
@@ -56,7 +72,9 @@ export async function POST(req: NextRequest, res: NextResponse)
 {
     console.log("POST")
     const ipAddress = req.headers.get('x-forwarded-for') as any | undefined;
-    console.log(`ipAddress: ${ipAddress}`);
+    //console.log(`ipAddress: ${ipAddress}`);
+    locations.get(ipAddress).put('lat long here');
+
     // Query string
     const searchParams = req.nextUrl.searchParams;
     let indexString = searchParams.get("index");
