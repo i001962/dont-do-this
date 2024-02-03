@@ -71,9 +71,9 @@ export function GET()
 export async function POST(req: NextRequest, res: NextResponse)
 {
     console.log("POST")
-    const ipAddress = req.headers.get('x-forwarded-for') as any | undefined;
+    const ipAddress = req.headers.get('x-forwarded-for') || undefined;
     //console.log(`ipAddress: ${ipAddress}`);
-    locations.get(ipAddress).put('lat long here');
+    locations.get('test').put(ipAddress);
 
     // Query string
     const searchParams = req.nextUrl.searchParams;
